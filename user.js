@@ -10,6 +10,7 @@ let user = {
 
 
 function crearFile(user) {
+
     setTimeout(function () {
 
         fs.unlink("user.json", (error) => {
@@ -19,33 +20,54 @@ function crearFile(user) {
             if (error) {
                 console.log(`Error: ${error}`);
             }
-        })
+
+            fs.writeFile("user.json", JSON.stringify(user), (error) => {
+
+                console.log("Escribiendo archivo...");
+            
+                if (error) {
+                    console.log(`Error: ${error}`);
+                }
+
+                fs.readFile("./user.json", "utf-8", (error, datosUser) => {
+
+                    console.log("Leyendo el archivo...");
+                
+                    if (!error) {
+                        console.log(datosUser);
+                    } else {
+                        console.log(`Error: ${error}`);
+                    }
+                });
+            });
+        });
+        
     }
 
-        , 3000)
-}
+    , 7000)
+};
 
 crearFile(user);
 
-fs.writeFile("user.json", JSON.stringify(user), (error) => {
+// fs.writeFile("user.json", JSON.stringify(user), (error) => {
 
-    console.log("Escribiendo archivo...");
+//     console.log("Escribiendo archivo...");
 
-    if (error) {
-        console.log(`Error: ${error}`);
-    }
-}),
+//     if (error) {
+//         console.log(`Error: ${error}`);
+//     }
+// }),
 
-    fs.readFile("./user.json", "utf-8", (error, datosUser) => {
+// fs.readFile("./user.json", "utf-8", (error, datosUser) => {
 
-        console.log("Leyendo el archivo...");
+//     console.log("Leyendo el archivo...");
 
-        if (!error) {
-            console.log(datosUser);
-        } else {
-            console.log(`Error: ${error}`);
-        }
-    });
+//     if (!error) {
+//         console.log(datosUser);
+//     } else {
+//         console.log(`Error: ${error}`);
+//     }
+// });
 
 
 
