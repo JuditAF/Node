@@ -1,9 +1,10 @@
+
 const readline = require('node:readline');
-// const readline = require('readline');
 const fs = require('fs');
-const { log } = require('console');
+
 
 let rl = readline.createInterface(process.stdin, process.stdout);
+
 
 let user = {
     name: " ",
