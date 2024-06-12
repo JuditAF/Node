@@ -8,7 +8,7 @@ const fs = require('fs/promises');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-  }); 
+});
 
 
 let user = {
@@ -18,33 +18,42 @@ let user = {
 };
 
 
-async function createFile () {
+async function createFile() {
 
-    const nombre = await rl.question("What's your name? \n")
+    try {
 
-    user.name = nombre;
-    console.log(`¡Hello ${nombre}! 😄`);
-    const apellidos = await rl.question('What are your last names? \n')
+        const nombre = await rl.question("What's your name? \n")
 
-    user.surname = apellidos;
-    console.log(`⏱️ We are processing your data Mr/Mrs. ${apellidos}... `);
-    const edad = await rl.question('How old are you? \n')
-         
-    user.age = parseInt(edad);
-    console.log(`Profile created! ✌️`);
-    rl.close();
+        user.name = nombre;
+        console.log(`¡Hello ${nombre}! 😄`);
+        const apellidos = await rl.question('What are your last names? \n')
 
-    await fs.unlink("userAsync.json")
-    
-    console.log("❌ Deleting file... ");
-    await fs.writeFile("userAsync.json", JSON.stringify(user));
+        user.surname = apellidos;
+        console.log(`⏱️ We are processing your data Mr/Mrs. ${apellidos}... `);
+        const edad = await rl.question('How old are you? \n')
 
-    console.log("✒️ Writing file... ");
-    const userAsync = await fs.readFile("./userAsync.json", "utf-8");
+        user.age = parseInt(edad);
+        console.log(`Profile created! ✌️`);
+        rl.close();
 
-    console.log("📖 Reading file... ");
-    console.log(JSON.parse(userAsync));
-          
+        await fs.unlink("userAsync.json")
+
+        console.log("❌ Deleting file... ");
+        await fs.writeFile("userAsync.json", JSON.stringify(user));
+
+        console.log("✒️ Writing file... ");
+        const userAsync = await fs.readFile("./userAsync.json", "utf-8");
+
+        console.log("📖 Reading file... ");
+        console.log(JSON.parse(userAsync));
+        
+    }
+
+    catch (error) {
+
+        console.log(`La promesa no se ejecutó correctamente. Error: \n${error}`);
+
+    }
 }
 
-createFile ();
+createFile();
