@@ -13,13 +13,21 @@ let user = {
 
 async function createFile (user) {
 
-    console.log("❌ Deleting file... ");
-    await fs.unlink("userAsync.json");
-    console.log("✒️ Writing file... ");
-    await fs.writeFile("userAsync.json", JSON.stringify(user));
-    console.log("📖 Reading file... ");
-    const file = await fs.readFile("userAsync.json", "utf-8");
-    console.log(JSON.parse(file));
+   try { 
+        console.log("❌ Deleting file... ");
+        await fs.unlink("userAsync.json");
+        console.log("✒️ Writing file... ");
+        await fs.writeFile("userAsync.json", JSON.stringify(user));
+        console.log("📖 Reading file... ");
+        const file = await fs.readFile("userAsync.json", "utf-8");
+        console.log(JSON.parse(file));
+    } 
+    
+    catch (error) {
+
+        console.log(`La promesa no se ejecutó correctamente. Error: \n${error}`);
+
+    }
 
 };
 
