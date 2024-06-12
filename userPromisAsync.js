@@ -27,7 +27,7 @@ async function createFile(user) {
 
     catch (error) {
 
-        console.log(`La promesa no se ejecutó correctamente. Error: \n${error}`);
+        console.log(`The promise was not executed correctly. Mistake: \n${error}`);
 
     }
 
