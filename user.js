@@ -11,40 +11,35 @@ let user = {
 
 function crearFile(user) {
 
-    setTimeout(function () {
+    fs.unlink("user.json", (error) => {
 
-        fs.unlink("user.json", (error) => {
+        console.log("Eliminando archivo...");
 
-            console.log("Eliminando archivo...");
+        if (error) {
+            console.log(`Error: ${error}`);
+        }
+
+        fs.writeFile("user.json", JSON.stringify(user), (error) => {
+
+            console.log("Escribiendo archivo...");
 
             if (error) {
                 console.log(`Error: ${error}`);
             }
 
-            fs.writeFile("user.json", JSON.stringify(user), (error) => {
+            fs.readFile("./user.json", "utf-8", (error, datosUser) => {
 
-                console.log("Escribiendo archivo...");
-            
-                if (error) {
+                console.log("Leyendo el archivo...");
+
+                if (!error) {
+                    console.log(JSON.parse(datosUser));
+                } else {
                     console.log(`Error: ${error}`);
                 }
-
-                fs.readFile("./user.json", "utf-8", (error, datosUser) => {
-
-                    console.log("Leyendo el archivo...");
-                
-                    if (!error) {
-                        console.log(JSON.parse(datosUser));
-                    } else {
-                        console.log(`Error: ${error}`);
-                    }
-                });
             });
         });
-        
-    }
+    });
 
-    , 7000)
 };
 
 crearFile(user);
