@@ -3,7 +3,12 @@ const readline = require('readline/promises');
 const fs = require('fs/promises');
 
 
-let rl = readline.createInterface(process.stdin, process.stdout);
+// let rl = readline.createInterface(process.stdin, process.stdout);
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  }); 
 
 
 let user = {
