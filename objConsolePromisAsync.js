@@ -1,6 +1,7 @@
 
 const readline = require('readline/promises');
 const fs = require('fs/promises');
+const colorinchis = require('picocolors');
 
 
 // let rl = readline.createInterface(process.stdin, process.stdout);
@@ -33,7 +34,7 @@ async function createFile() {
         const edad = await rl.question('How old are you? \n')
 
         user.age = parseInt(edad);
-        console.log(`Profile created! ✌️`);
+        console.log(colorinchis.yellow(`Profile created! ✌️`));
         rl.close();
 
         await fs.unlink("userAsync.json")
@@ -51,7 +52,7 @@ async function createFile() {
 
     catch (error) {
 
-        console.log(`The promise was not executed correctly. Mistake: \n${error}`);
+        console.log(colorinchis.red(`The promise was not executed correctly. Mistake: \n${error}`));
 
     }
 }
