@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/JuditAF/Node/issues"
   },
-  "homepage": "https://github.com/JuditAF/Node#readme"
+  "homepage": "https://github.com/JuditAF/Node#readme",
+  "devDependencies": {
+    "semistandard": "17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "semistandard "
+  }
 }
