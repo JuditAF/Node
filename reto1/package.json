@@ -1,0 +1,25 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Proyecto Node de Inciciación al entorno de ejecución multiplataforma node. Back end",
+  "main": "message.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuditAF/Node.git"
+  },
+  "author": "M. Judit Amate Franco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuditAF/Node/issues"
+  },
+  "homepage": "https://github.com/JuditAF/Node#readme",
+  "devDependencies": {
+    "semistandard": "17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "semistandard "
+  }
+}
