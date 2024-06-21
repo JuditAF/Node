@@ -70,7 +70,7 @@ function putBooks(request, response){
         books[i].id_book = request.body.id_book;
         books[i].id_user = request.body.id_user;
 
-        response.json(books[i]);
+        response.send(books[i]);
         respuesta = {error:false, codigo: 200, 
             mensaje: "Libro Actualizado", data: newBook}
     } else {
@@ -90,7 +90,7 @@ function deleteBooks(request, response){
     if (book != null && id_book === book.id_book) {
         let bookNull = books.splice(i, 1);
         
-        res.json(bookNull[0]);
+        response.send(bookNull[0]);
         respuesta = {error:false, codigo: 200, 
             mensaje: "Libro eliminado", data: books}
     } else {

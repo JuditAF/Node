@@ -2,7 +2,8 @@
 // IMPORTACIÓN DE MÓDULOS
 const express = require('express');
 const cors = require('cors');
-const userRouters = require ('./src/routers/book.routers');         
+const bookRouters = require("./src/routers/book.routers")
+const booksRouters = require("./src/routers/books.routers")        
 const errorHandling = require ('./src/error/errorHandling');
 
 
@@ -20,9 +21,9 @@ app.use(cors());                                        // CAPA DE SEGURIDAD
 app.use(express.urlencoded({ extended : false }));      // ORIGEN EN FORMATO .JSON
 app.use(express.json());                                // DESTINO EN FORMATO .JSON
 
-app.use(userRouters); 
-app.use("/book", bookRouter);                           // LLAMAMOS A NUESTRA API QUE SE ENCUENTRA EN LAS RUTAS DE LOS ENDPOINTS
-app.use("/books", booksRouter);                                   
+
+app.use(bookRouters);                           // LLAMAMOS A NUESTRA API QUE SE ENCUENTRA EN LAS RUTAS DE LOS ENDPOINTS
+app.use(booksRouters);                                   
 
 
 //  RECOGEMOS ERRORES
