@@ -1,7 +1,7 @@
 
 const {Router} = require ('express');
 const router = Router();                                        // FICHERO CON CADA ENDPOINT
-const booksCtrl = require ('../controller/book.controller');
+const booksCtrl = require ('../controller/books.controller');
 
 
 router.get('/', booksCtrl.getStart);

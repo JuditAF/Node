@@ -14,7 +14,7 @@ function getBookParams(request, response){
     let id_book = request.params.id_book;
     let book = books.find(book => book.id_book == parseInt(id_book));
     if (book != null && id_book === book.id_book) {
-        response.send.json(book);
+        response.send(book);
     } else {
         response.send({error: true, codigo: 200, mensaje: "El Libro no existe"})
     }
@@ -22,7 +22,7 @@ function getBookParams(request, response){
 
 function getBooks(request, response){
     if (books != null) {
-        response.send.json(books)
+        response.json(books)
     } else {
         response.send({error: true, codigo: 200, mensaje: "La lista de libros está vacía"})
     }
