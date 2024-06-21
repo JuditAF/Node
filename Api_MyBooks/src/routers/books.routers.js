@@ -5,12 +5,12 @@ const booksCtrl = require ('../controller/books.controller');
 
 
 router.get('/', booksCtrl.getStart);
-router.get('/book', booksCtrl.getBooks);
-router.get('/book:id_book', booksCtrl.getBookParams);
+router.get('/books', booksCtrl.getBooks);
+router.get('/books:id_book', booksCtrl.getBookParams);
 
-router.post('/book', booksCtrl.postBooks);
-router.put('/book', booksCtrl.putBooks);
-router.delete('/book', booksCtrl.deleteBooks);
+router.post('/books', booksCtrl.postBooks);
+router.put('/books', booksCtrl.putBooks);
+router.delete('/books', booksCtrl.deleteBooks);
 
 
 module.exports = router;

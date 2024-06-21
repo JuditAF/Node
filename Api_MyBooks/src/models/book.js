@@ -36,3 +36,23 @@ module.exports = Book;
 //     "id_book": "359116",
 //     "id_user": "18"
 // }
+
+// {
+//     "title": "Código Limpio",
+//     "type": "Programación",
+//     "author": "Robert C.Martin",
+//     "price": "54.50",
+//     "photo": "https://m.media-amazon.com/images/I/61orja1+P7L._AC_UF1000,1000_QL80_.jpg",
+//     "id_book": "368842",
+//     "id_user": "14"
+// }
+
+// {
+//     "title": "El enigma de las Arenas",
+//     "type": "Novela contemporánea",
+//     "author": "Arturo Pérez-Reverte",
+//     "price": "41.80",
+//     "photo": "https://www.oletvm.com/imagenes/9788435/978843505566.JPG",
+//     "id_book": "320789",
+//     "id_user": "12"
+// }
