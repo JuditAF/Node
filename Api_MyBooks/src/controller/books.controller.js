@@ -43,7 +43,7 @@ function postBooks(request, response){
                  id_user: request.body.id_user
         }
         books.push(newBook);
-        response.send.json(newBook);
+        response.send(newBook);
         respuesta = {error:false, codigo: 200, 
                      mensaje: "Libro añadido", data: newBook}
     } else {

@@ -20,7 +20,9 @@ app.use(cors());                                        // CAPA DE SEGURIDAD
 app.use(express.urlencoded({ extended : false }));      // ORIGEN EN FORMATO .JSON
 app.use(express.json());                                // DESTINO EN FORMATO .JSON
 
-app.use(userRouters);                                   // LLAMAMOS A NUESTRA API QUE SE ENCUENTRA EN LAS RUTAS DE LOS ENDPOINTS
+app.use(userRouters); 
+app.use("/book", bookRouter);                           // LLAMAMOS A NUESTRA API QUE SE ENCUENTRA EN LAS RUTAS DE LOS ENDPOINTS
+app.use("/books", booksRouter);                                   
 
 
 //  RECOGEMOS ERRORES
