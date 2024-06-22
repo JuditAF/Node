@@ -84,12 +84,11 @@ function deleteBooks(request, response){
     if (book != null && id_book === book.id_book) {
         let bookNull = books.splice(i, 1);
         
-        response.send(bookNull[0]);
         respuesta = {error:false, codigo: 200, 
-            mensaje: "Libro eliminado", data: books}
+            mensaje: "Libro eliminado", data: bookNull[0]}
     } else {
         respuesta = {error:true, codigo: 404, 
-            mensaje: "el Libro no existe", data: books}
+            mensaje: "el Libro no existe", data: book}
     }
     response.send(respuesta);
 };
