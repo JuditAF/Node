@@ -6,7 +6,7 @@ const booksCtrl = require ('../controller/books.controller');
 
 router.get('/', booksCtrl.getStart);
 router.get('/books', booksCtrl.getBooks);
-router.get('/books:id_book', booksCtrl.getBookParams);
+router.get('/books:id', booksCtrl.getBookParams);
 
 router.post('/books', booksCtrl.postBooks);
 router.put('/books', booksCtrl.putBooks);

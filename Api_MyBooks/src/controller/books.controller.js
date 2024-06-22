@@ -1,5 +1,7 @@
 
+const crypto = require ('node:crypto');
 const book = require ( "../models/book" );
+const Book = require('../models/book');
 
 
 let books = [];
@@ -11,12 +13,12 @@ function getStart(request, response){
 };
 
 function getBookParams(request, response){
-    let id_book = request.params.id_book;
-    let book = books.find(book => book.id_book == parseInt(id_book));
+    const id_book = request.params.id;
+    const book = books.find(book => book.id_book == parseInt(id_book));
     if (book != null && id_book === book.id_book) {
         response.send(book);
     } else {
-        response.send({error: true, codigo: 200, mensaje: "El Libro no existe"})
+        response.send({error: true, codigo: 404, mensaje: "El Libro no existe"})
     }
 };
 
@@ -30,53 +32,45 @@ function getBooks(request, response){
 
 
 function postBooks(request, response){
-    
-    let newBook = new Book (title, type, author, price, photo, id_book, id_user);
 
-    if ( newBook === null ) {
-        newBook = { title: request.body.title,
-                 type: request.body.type,
-                 author: request.body.author,
-                 price: request.body.price,
-                 photo: request.body.photo,
-                 id_book: request.body.id_book,
-                 id_user: request.body.id_user
-        }
+    let {title, type, author, price, photo, id_book, id_user} = request.body;
+    let newBook =  new Book (title, type, author, price, photo, id_book = id_book ?? crypto.randomUUID(), id_user = id_user ?? 1);
+    
+    if ( newBook !== null) {
+
         books.push(newBook);
-        response.send(newBook);
-        respuesta = {error:false, codigo: 200, 
+        respuesta = {error:false, codigo: 201,                      // 201: Código Objeto Creado
                      mensaje: "Libro añadido", data: newBook}
     } else {
         respuesta = {error:true, codigo: 200, 
-            mensaje: "Libro ya existente", data: book}
+            mensaje: "Libro ya existente", data: newBook}
     }
     response.send(respuesta);
 };
 
 
 function putBooks(request, response){
-    
-    let id_book = request.params.id_book;
 
-    let i = books.findIndex(book => book.id_book == parseInt(id_book));
-    let respuesta;
+    let {title, type, author, price, photo, id_book, id_user} = request.body;
+    let i = books.findIndex(book => book.id_book == id_book);
 
-    if (newBook != null && i !== -1) {
-        books[i].title = request.body.title;
-        books[i].type = request.body.type;
-        books[i].author = request.body.author;
-        books[i].price = request.body.price;
-        books[i].photo = request.body.photo;
-        books[i].id_book = request.body.id_book;
-        books[i].id_user = request.body.id_user;
+    if(i !== -1) {
+        books[i].title = title;
+        books[i].type = type;
+        books[i].author = author;
+        books[i].price = price;
+        books[i].photo = photo;
+        books[i].id_book = id_book;
+        books[i].id_user = id_user;
 
-        response.send(books[i]);
+        // response.send(books[i]);
         respuesta = {error:false, codigo: 200, 
-            mensaje: "Libro Actualizado", data: newBook}
+                    mensaje: "Libro Actualizado", data: books[i]}
     } else {
-        respuesta = {error:true, codigo: 200, 
-            mensaje: "el Libro no existe", data: newBook}
+        respuesta = {error:true, codigo: 404, 
+                    mensaje: "el Libro no existe", data: book}
     }
+
     response.send(respuesta);
 };
 
@@ -94,7 +88,7 @@ function deleteBooks(request, response){
         respuesta = {error:false, codigo: 200, 
             mensaje: "Libro eliminado", data: books}
     } else {
-        respuesta = {error:true, codigo: 200, 
+        respuesta = {error:true, codigo: 404, 
             mensaje: "el Libro no existe", data: books}
     }
     response.send(respuesta);
