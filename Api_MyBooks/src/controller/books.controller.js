@@ -13,8 +13,8 @@ function getStart(request, response){
 };
 
 function getBookParams(request, response){
-    const id_book = request.params.id;
-    const book = books.find(book => book.id_book == parseInt(id_book));
+    const id_book = request.params.id_book;
+    const book = books.find(book => book.id_book === id_book);
     if (book != null && id_book === book.id_book) {
         response.send(book);
     } else {
