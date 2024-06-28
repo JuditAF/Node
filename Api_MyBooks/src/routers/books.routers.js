@@ -10,7 +10,7 @@ router.get('/books/:id_book', booksCtrl.getBookParams);
 
 router.post('/books', booksCtrl.postBooks);
 router.put('/books', booksCtrl.putBooks);
-router.delete('/books', booksCtrl.deleteBooks);
+router.delete('/books/:id_book', booksCtrl.deleteBooks);
 
 
 module.exports = router;

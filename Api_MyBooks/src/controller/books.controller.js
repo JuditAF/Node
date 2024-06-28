@@ -16,7 +16,8 @@ function getBookParams(request, response){
     const id_book = request.params.id_book;
     const book = books.find(book => book.id_book === id_book);
     if (book != null && id_book === book.id_book) {
-        response.send(book);
+        let respuesta = {error: false, codigo: 200, mensaje: "Libro encontrado", data: [book]}
+        response.send(respuesta);
     } else {
         response.send({error: true, codigo: 404, mensaje: "El Libro no existe"})
     }
@@ -24,7 +25,8 @@ function getBookParams(request, response){
 
 function getBooks(request, response){
     if (books != null) {
-        response.json(books)
+        let respuesta = {error: false, codigo: 200, mensaje: "Libros almacenados", data: books}
+        response.json(respuesta);
     } else {
         response.send({error: true, codigo: 200, mensaje: "La lista de libros está vacía"})
     }
@@ -32,6 +34,8 @@ function getBooks(request, response){
 
 
 function postBooks(request, response){
+
+    console.log(request.body);
 
     let {title, type, author, price, photo, id_book, id_user} = request.body;
     let newBook =  new Book (title, type, author, price, photo, id_book = id_book ?? crypto.randomUUID(), id_user = id_user ?? 1);
@@ -63,7 +67,6 @@ function putBooks(request, response){
         books[i].id_book = id_book;
         books[i].id_user = id_user;
 
-        // response.send(books[i]);
         respuesta = {error:false, codigo: 200, 
                     mensaje: "Libro Actualizado", data: books[i]}
     } else {
@@ -78,14 +81,17 @@ function putBooks(request, response){
 function deleteBooks(request, response){
 
     let id_book = request.params.id_book;
-    let i = books.findIndex(book => book.id_book == parseInt(id_book));
+    let newBooks = books.filter(book => book.id_book != id_book);
+    console.log(id_book);
+    console.log(newBooks);
     let respuesta;
 
-    if (book != null && id_book === book.id_book) {
-        let bookNull = books.splice(i, 1);
+    if (newBooks.length != books.length) {
+
+        books = newBooks;
         
         respuesta = {error:false, codigo: 200, 
-            mensaje: "Libro eliminado", data: bookNull[0]}
+            mensaje: "Libro eliminado", data: books}
     } else {
         respuesta = {error:true, codigo: 404, 
             mensaje: "el Libro no existe", data: book}
